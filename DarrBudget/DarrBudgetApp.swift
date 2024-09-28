@@ -13,5 +13,6 @@ struct DarrBudgetApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: [Bucket.self, Transaction.self])
     }
 }
