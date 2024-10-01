@@ -11,7 +11,7 @@ import SwiftUI
 struct DarrBudgetApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            BucketListView()
         }
         .modelContainer(for: [Bucket.self, Transaction.self])
     }

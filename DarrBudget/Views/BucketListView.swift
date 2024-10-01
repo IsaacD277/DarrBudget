@@ -12,20 +12,14 @@ struct BucketListView: View {
     @Environment(\.modelContext) var modelContext
     @Query var buckets: [Bucket]
 
-    @State private var showingSheet = false
+    @State private var addBucketSheet = false
+    @State private var infoSheet = false
     
     var body: some View {
         NavigationStack {
-            Button("Show Sheet") {
-                showingSheet.toggle()
-            }
-            .sheet(isPresented: $showingSheet) {
-                ContentView()
-            }
-            
             List {
                 ForEach(buckets) { bucket in
-                    VStack(alignment: .center) {
+                    VStack(alignment: .leading) {
                         Text(bucket.name)
                         Text(bucket.month.description)
                         Text(bucket.year, format: .number)
@@ -34,17 +28,24 @@ struct BucketListView: View {
                 }
             }
             .toolbar {
-                Button("Add Bucket") {
-                    addBucketData()
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Add", systemImage: "plus") {
+                        addBucketSheet.toggle()
+                    }
+                }
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Details", systemImage: "info.circle") {
+                        infoSheet.toggle()
+                    }
                 }
             }
+            .sheet(isPresented: $addBucketSheet) {
+                AddBucketView()
+            }
+            .sheet(isPresented: $infoSheet) {
+                ContentView()
+            }
         }
-    }
-    
-    func addBucketData() {
-        let newBucket = Bucket(name: "Test", month: 10, year: 2024, budgeted: 50.0)
-        
-        modelContext.insert(newBucket)
     }
 }
 
