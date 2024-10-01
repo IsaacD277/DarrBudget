@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
+    @Environment(\.modelContext) var modelContext
     @State private var text: String = ""
     @FocusState private var isActive: Bool
     
@@ -24,6 +25,19 @@ struct ContentView: View {
             } keyboard: {
                 CustomNumberKeyboard(inputText: $text, isActive: $isActive, onSubmit: onSubmit)
             }
+            
+            Button("Get SQLite Command") {
+                print(modelContext.sqliteCommand)
+            }
+            .padding()
+            
+            Button("Add Bucket Data") {
+                modelContext.insert(Bucket(name: "Test", month: 9, year: 2024))
+                modelContext.insert(Bucket(name: "Quiz", month: 9, year: 2024))
+                modelContext.insert(Bucket(name: "Exam", month: 9, year: 2024))
+            }
+            .padding()
+            
             .navigationTitle("Custom Keyboard")
         }
     }
