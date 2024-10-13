@@ -8,7 +8,7 @@
 import SwiftData
 import SwiftUI
 
-struct AddBucketView: View {
+struct addBucketView: View {
     @Environment(\.modelContext) var modelContext
     @Environment(\.dismiss) var dismiss
     
@@ -55,5 +55,5 @@ struct AddBucketView: View {
 }
 
 #Preview {
-    AddBucketView()
+    addBucketView()
 }

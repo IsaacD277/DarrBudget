@@ -40,7 +40,7 @@ struct BucketListView: View {
                 }
             }
             .sheet(isPresented: $addBucketSheet) {
-                AddBucketView()
+                addTransactionView()
             }
             .sheet(isPresented: $infoSheet) {
                 ContentView()

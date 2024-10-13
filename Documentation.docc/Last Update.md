@@ -6,6 +6,21 @@ What I worked on last so I don't have to remember by looking through the code.
 
 <!--@START_MENU_TOKEN@-->Text<!--@END_MENU_TOKEN@-->
 
+### October 12, 2024
+- Removed Year:Month Picker view
+- Changed main app view to be addTransactionView() as that is what was being worked on mainly
+- Changed CustomNumberKeyboard to have "." and "Backspace" instead of an enter button. Enter will be taken care of elsewhere
+- Added an entirely new way of filling out the form. Now items slide across from right to left one at a time as the form is being filled out.
+- Need to figure out how to make selections (Date, Bucket, Account, etc.) the exact same height as the keyboard so everything stays in place.
+- Keeps the focus on the currently visible field.
+- Need to break up the code to make it more reusable and clean.
+- ProgressView was created and used to brainstorm a lot of what addTransactionView currently is.
+- 
+
+- Idea: Use the Chip View video to select the accounts/buckets/etc.?
+- Idea: Use a search functionality to quickly find buckets/categories/etc. like in Maps and or ConnectWise
+- Idea: Have the bar at the bottom show progress instead of being dots. When all the progress is made, it turns into a submit button.
+
 ### September 30, 2024
 
 - Changed the homescreen to now be the bucket list view
