@@ -6,6 +6,11 @@ What I worked on last so I don't have to remember by looking through the code.
 
 <!--@START_MENU_TOKEN@-->Text<!--@END_MENU_TOKEN@-->
 
+### October 21, 2024
+- Created ChipView for accounts / buckets / etc.
+- Currently all inside of "extensions" but its working and its bedtime so I gotta go do that now.
+- Will clean up the rest of the code next time!
+
 ### October 12, 2024
 - Removed Year:Month Picker view
 - Changed main app view to be addTransactionView() as that is what was being worked on mainly
