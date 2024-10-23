@@ -6,6 +6,10 @@ What I worked on last so I don't have to remember by looking through the code.
 
 <!--@START_MENU_TOKEN@-->Text<!--@END_MENU_TOKEN@-->
 
+### October 21, 2024
+- Created ChipView for accounts / buckets / etc.
+- Downloading the latest version of XCode to hopefully get better access to it.
+
 ### October 12, 2024
 - Removed Year:Month Picker view
 - Changed main app view to be addTransactionView() as that is what was being worked on mainly
