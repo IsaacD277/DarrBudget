@@ -11,6 +11,7 @@ import SwiftData
 struct BucketListView: View {
     @Environment(\.modelContext) var modelContext
     @Query var buckets: [Bucket]
+    @Query var transactions: [Transaction]
 
     @State private var addBucketSheet = false
     @State private var infoSheet = false
@@ -43,7 +44,7 @@ struct BucketListView: View {
                 addTransactionView()
             }
             .sheet(isPresented: $infoSheet) {
-                ContentView()
+                ContentViews()
             }
         }
     }
