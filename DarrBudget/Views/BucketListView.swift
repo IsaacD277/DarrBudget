@@ -12,6 +12,7 @@ struct BucketListView: View {
     @Environment(\.modelContext) var modelContext
     @Query var buckets: [Bucket]
     @Query var transactions: [Transaction]
+    @Query var paymentMethods: [PaymentMethod]
 
     @State private var addBucketSheet = false
     @State private var infoSheet = false
@@ -41,10 +42,10 @@ struct BucketListView: View {
                 }
             }
             .sheet(isPresented: $addBucketSheet) {
-                addTransactionView()
+                addTransactionTEST()
             }
             .sheet(isPresented: $infoSheet) {
-                ContentViews()
+                ContentView()
             }
         }
     }

@@ -7,6 +7,13 @@ What I worked on last so I don't have to remember by looking through the code.
 - When adding transactions, keep the account selected between. I will be adding 15 Apple Card payments, I don't want to have to tap "Apple Card" each time.
 - If a vendor doesn't exist, create one automatically, find similar ones if it doesn't quite match though
 
+### November 1, 2024
+- Need to figure out how to use Layout
+- Separated the Chip layout thing into separate views
+- Started creating the search functionality in addTransactionTEST
+- Created DynamicQuery for updating the Predicate filter
+- Changed Payment to PaymentMethod and took away the word in the initializer
+- 
 
 ### October 21, 2024
 - Created ChipView for accounts / buckets / etc.

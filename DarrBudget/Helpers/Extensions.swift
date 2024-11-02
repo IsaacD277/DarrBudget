@@ -54,78 +54,7 @@ extension SubviewsCollection {
     }
 }
 
-struct ChipView: View {
-    @Environment(\.modelContext) var modelContext
-    @Environment(\.dismiss) var dismiss
-    @Query var accounts: [Payment]
-    
-    var body: some View {
-        NavigationStack {
-            VStack {
-                Button("Add Payment Method Data") {
-                    modelContext.insert(Payment(name: "Ally"))
-                    modelContext.insert(Payment(name: "Apple Card"))
-                    modelContext.insert(Payment(name: "Citi"))
-                    modelContext.insert(Payment(name: "Discover"))
-                    modelContext.insert(Payment(name: "USAA"))
-                    modelContext.insert(Payment(name: "Navy Federal"))
-                    modelContext.insert(Payment(name: "Other"))
-                }
-                
-                ChipsView {
-                    ForEach(accounts) { payment in
-                        ChipLabelView(chip: payment)
-                    }
-                }
-                .frame(width: 350)
-                .padding(15)
-                .background(.primary.opacity(0.06), in: RoundedRectangle(cornerRadius: 10))
-            }
-            .padding(15)
-            .navigationTitle("Chips")
-        }
-    }
-}
 
-#Preview {
-    ChipView()
-}
-
-struct ChipLabelView: View {
-    var chip: Payment
-    
-    var body: some View {
-        let viewWidth = chip.name.size(.preferredFont(forTextStyle: .body)).width + 20
-        
-        Text(chip.name)
-            .font(.body)
-            .foregroundColor(.white)
-            .padding(.vertical, 6)
-            .padding(.horizontal, 10)
-            .background(Color.red.gradient, in: Capsule())
-            .containerValue(\.viewWidth, viewWidth)
-    }
-}
-
-struct ChipsView<Content: View>: View {
-    @ViewBuilder var content: Content
-    
-    var body: some View {
-        Group(subviews: content) { collection in
-            let chunkedCollection = collection.chunkByWidth(300)
-            
-            VStack(alignment: .center, spacing: 10) {
-                ForEach(chunkedCollection.indices, id: \.self) { index in
-                    HStack(spacing: 10) {
-                        ForEach(chunkedCollection[index]) { subview in
-                            subview
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
 
 // Mock Data
 struct Chip: Identifiable {

@@ -39,13 +39,13 @@ struct ContentView: View {
             .padding()
             
             Button("Add Payment Method Data") {
-                modelContext.insert(Payment(name: "Ally"))
-                modelContext.insert(Payment(name: "Apple Card"))
-                modelContext.insert(Payment(name: "Citi"))
-                modelContext.insert(Payment(name: "Discover"))
-                modelContext.insert(Payment(name: "USAA"))
-                modelContext.insert(Payment(name: "Navy Federal"))
-                modelContext.insert(Payment(name: "Other"))
+                modelContext.insert(PaymentMethod("Ally"))
+                modelContext.insert(PaymentMethod("Apple Card"))
+                modelContext.insert(PaymentMethod("Citi"))
+                modelContext.insert(PaymentMethod("Discover"))
+                modelContext.insert(PaymentMethod("USAA"))
+                modelContext.insert(PaymentMethod("Navy Federal"))
+                modelContext.insert(PaymentMethod("Other"))
             }
             
             .navigationTitle("Custom Keyboard")

@@ -9,11 +9,11 @@ import Foundation
 import SwiftData
 
 @Model
-class Payment {
+class PaymentMethod: Identifiable {
     var id: UUID
     var name: String
     
-    init(name: String) {
+    init(_ name: String) {
         id = UUID()
         self.name = name
     }

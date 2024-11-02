@@ -172,9 +172,16 @@ struct addTransactionView: View {
     func stepup() {
         if step < 7 {
             step += 1
-        } else if step == 7{
-            modelContext.insert(Transaction(name: name, date: date, amount: amount, merchant: merchant, account: account))
-            print("No more range bro")
+        } else if step == 7 {
+            
+            
+            
+            let temp = Transaction(name: name, date: date, amount: amount, merchant: merchant, account: PaymentMethod(account))
+            modelContext.insert(temp)
+            print("What was just added:")
+            print(temp.account.name)
+            print(temp.account.id)
+            print("---------------------------------------------")
         }
     }
     
