@@ -11,18 +11,17 @@ import SwiftUI
 struct addTransactionView: View {
     @Environment(\.modelContext) var modelContext
     @Environment(\.dismiss) var dismiss
-    @Query var buckets: [Bucket]
     
     @FocusState private var isActive: Field?
     
     @State private var name: String = ""
     // @State private var selectedDate: Date = Date.now
-    @State private var date: String = ""
-    @State private var amount: String = ""
-    @State private var merchant: String = ""
-    @State private var account: String = ""
-    @State private var notes: String = ""
-    @State private var bucket: String = ""
+    @State private var date: String = "2024-12-25"
+    @State private var amount: String = "420.25"
+    @State private var merchant: String = "Walmart"
+    @State private var account: String = "Ally"
+    @State private var notes: String = "Just a taste test"
+    @State private var bucket: String = "Food"
     
     @State private var step: Int = 1
     
@@ -137,7 +136,7 @@ struct addTransactionView: View {
                     stepup()
                 } label: {
                     ZStack {
-                        Text("Next")
+                        Text(step == 7 ? "Submit" : "Next")
                             .bold()
                             .foregroundStyle(.white)
                             .padding(.horizontal)
@@ -173,15 +172,17 @@ struct addTransactionView: View {
         if step < 7 {
             step += 1
         } else if step == 7 {
+            sendForm()
             
+            // Reset fields other than account
+            name = ""
+            date = ""
+            amount = ""
+            merchant = ""
+            notes = ""
+            bucket = ""
             
-            
-            let temp = Transaction(name: name, date: date, amount: amount, merchant: merchant, account: PaymentMethod(account))
-            modelContext.insert(temp)
-            print("What was just added:")
-            print(temp.account.name)
-            print(temp.account.id)
-            print("---------------------------------------------")
+            step = 1
         }
     }
     
@@ -192,6 +193,47 @@ struct addTransactionView: View {
             print("No more range bro")
         }
     }
+    
+    func sendForm() {
+        let parameters = [
+            "submit": "Submit?usp=pp_url",
+            "entry.887759140": date,
+            "entry.36478665": amount,
+            "entry.1081651115": bucket,
+            "entry.573719413": account,
+            "entry.1051143441": merchant,
+            "entry.1116084257": notes
+        ] as [String: Any]
+
+        let boundary = "Boundary-\(UUID().uuidString)"
+        var body = Data()
+        
+        // Contructing the request body
+        for (key, value) in parameters {
+            body += Data("--\(boundary)\r\n".utf8)
+            body += Data("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n".utf8)
+            body += Data("\(value)\r\n".utf8)
+        }
+        body += Data("--\(boundary)--\r\n".utf8)
+        
+        // Create request
+        var request = URLRequest(url: URL(string: "https://docs.google.com/forms/d/e/1FAIpQLSc9LHixYGaJDG9girByt4AmJwLi_gOv-Yi2OMZbBpLirANgRw/formResponse")!, timeoutInterval: Double.infinity)
+        request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+
+        request.httpMethod = "POST"
+        request.httpBody = body
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+          guard let data = data else {
+            print(String(describing: error))
+            return
+          }
+            print(String(data: data, encoding: .utf8)!)
+        }
+
+        task.resume()
+    }
+    
     
 //    func onSubmit() {
 //        let decimalAmount = Decimal(string: amount)

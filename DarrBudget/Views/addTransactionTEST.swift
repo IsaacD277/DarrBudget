@@ -53,6 +53,6 @@ struct addTransactionTEST: View {
 
 
 
-//#Preview {
-//    addTransactionTEST()
-//}
+#Preview {
+    addTransactionTEST()
+}

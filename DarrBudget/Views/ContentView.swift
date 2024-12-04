@@ -10,6 +10,76 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) var modelContext
+    
+    @State private var categoryName: String = ""
+    @State private var plannedAmount: Double = 0.0
+    @State private var stringAmount: String = ""
+    
+    var body: some View {
+        NavigationStack {
+            VStack {
+                Text("Create some budget categories")
+                    .font(.title)
+                
+                TextField("Category Name", text: $categoryName)
+                    .padding(.vertical, 10)
+                    .padding(.horizontal, 15)
+                    .frame(width: 200)
+                    .background(.fill, in: .rect(cornerRadius: 12))
+                
+                TextField("Enter Amount", text: $stringAmount)
+                    .keyboardType(.decimalPad)
+                    .onChange(of: stringAmount) {
+                        // Validate input and convert to Double
+                        if let value = Double(stringAmount) {
+                            plannedAmount = value
+                        } else {
+                            // Revert to last valid value if input is invalid
+                            stringAmount = "\(plannedAmount)"
+                        }
+                    }
+                    .padding(.vertical, 10)
+                    .padding(.horizontal, 15)
+                    .frame(width: 200)
+                    .background(.fill, in: .rect(cornerRadius: 12))
+                
+                Button() {
+                    modelContext.insert(Category(name: categoryName, plannedAmount: plannedAmount))
+                    categoryName = ""
+                    plannedAmount = 0.0
+                } label: {
+                    Text("Add Category")
+                        .bold()
+                        .padding(.vertical, 10)
+                        .padding(.horizontal, 15)
+                        .frame(width: 150)
+                        .background(.fill, in: .rect(cornerRadius: 12))
+                }
+                .padding(.bottom)
+                
+                NavigationLink("Next Step", destination: addMonthlyBudgetView())
+                    Text("Next Step")
+                        .bold()
+                        .padding(.vertical, 10)
+                        .padding(.horizontal, 15)
+                        .frame(width: 150)
+                        .background(.fill, in: .rect(cornerRadius: 12))
+                }
+                .padding(.bottom)
+            }
+        }
+    }
+
+#Preview {
+    ContentView()
+}
+
+/*
+import SwiftUI
+import SwiftData
+
+struct ContentView: View {
+    @Environment(\.modelContext) var modelContext
     @State private var text: String = ""
     @FocusState private var isActive: Bool
     
@@ -32,9 +102,7 @@ struct ContentView: View {
             .padding()
             
             Button("Add Bucket Data") {
-                modelContext.insert(Bucket(name: "Test", month: 9, year: 2024))
-                modelContext.insert(Bucket(name: "Quiz", month: 9, year: 2024))
-                modelContext.insert(Bucket(name: "Exam", month: 9, year: 2024))
+                // Does nothing
             }
             .padding()
             
@@ -60,3 +128,4 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+*/

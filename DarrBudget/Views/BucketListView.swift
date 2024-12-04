@@ -5,12 +5,13 @@
 //  Created by Isaac D2 on 9/14/24.
 //
 
+/*
 import SwiftUI
 import SwiftData
 
 struct BucketListView: View {
     @Environment(\.modelContext) var modelContext
-    @Query var buckets: [Bucket]
+    @Query var categories: [Category]
     @Query var transactions: [Transaction]
     @Query var paymentMethods: [PaymentMethod]
 
@@ -20,12 +21,11 @@ struct BucketListView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(buckets) { bucket in
+                ForEach(categories) { category in
                     VStack(alignment: .leading) {
-                        Text(bucket.name)
-                        Text(bucket.month.description)
-                        Text(bucket.year, format: .number)
-                        Text(bucket.budgeted ?? 0, format: .currency(code: "USD"))
+                        Text(category.name)
+                        Text(category.year, format: .number)
+                        Text(category.budgeted ?? 0, format: .currency(code: "USD"))
                     }
                 }
             }
@@ -54,3 +54,5 @@ struct BucketListView: View {
 #Preview {
     BucketListView()
 }
+
+*/

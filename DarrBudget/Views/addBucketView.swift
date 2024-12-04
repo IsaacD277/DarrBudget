@@ -5,6 +5,7 @@
 //  Created by Isaac D2 on 9/28/24.
 //
 
+/*
 import SwiftData
 import SwiftUI
 
@@ -46,8 +47,8 @@ struct addBucketView: View {
     func onSubmit() {
         let selectedMonth = Calendar.current.component(.month, from: selectedDate)
         let selectedYear = Calendar.current.component(.year, from: selectedDate)
-        let newBucket = Bucket(name: name, month: selectedMonth, year: selectedYear)
-        modelContext.insert(newBucket)
+//        let newBucket = Bucket(name: name, month: selectedMonth, year: selectedYear)
+        // modelContext.insert(newBucket)
         
         isActive = false
         dismiss()
@@ -57,3 +58,4 @@ struct addBucketView: View {
 #Preview {
     addBucketView()
 }
+*/

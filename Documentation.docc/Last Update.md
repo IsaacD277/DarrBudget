@@ -5,7 +5,6 @@ What I worked on last so I don't have to remember by looking through the code.
 ## Ideas
 
 - When adding transactions, keep the account selected between. I will be adding 15 Apple Card payments, I don't want to have to tap "Apple Card" each time.
-- If a vendor doesn't exist, create one automatically, find similar ones if it doesn't quite match though
 
 ### November 1, 2024
 - Need to figure out how to use Layout
